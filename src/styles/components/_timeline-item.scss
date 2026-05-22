@@ -1,0 +1,65 @@
+@use '../abstracts/variables' as *;
+
+.timeline-item {
+  position: relative;
+  padding-left: var(--timeline-item-padding);
+  transition: transform $transition-base;
+
+  &::before {
+    position: absolute;
+    top: var(--timeline-dot-top);
+    left: var(--timeline-dot-offset);
+    width: var(--timeline-dot-size);
+    height: var(--timeline-dot-size);
+    content: '';
+    background-color: var(--color-timeline-dot);
+    border: 2px solid var(--color-bg);
+    border-radius: 50%;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    transform: translateX(2px);
+
+    &::before {
+      transform: scale(1.15);
+    }
+  }
+}
+
+.timeline-item__date {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-size: $font-size-xs;
+  color: var(--color-text-subtle);
+}
+
+.timeline-item__role {
+  margin-bottom: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: var(--color-text);
+}
+
+.timeline-item__company {
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: var(--color-timeline-company);
+}
+
+.timeline-item__achievements {
+  max-width: var(--timeline-achievements-max-width);
+  padding-left: 1.6rem;
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  color: var(--color-text-muted);
+  list-style: disc;
+
+  li + li {
+    margin-top: 0.8rem;
+  }
+}

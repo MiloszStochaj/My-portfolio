@@ -1,0 +1,63 @@
+@use '../abstracts/variables' as *;
+
+.skill-card {
+  height: 100%;
+  padding: 3.2rem;
+  background-color: var(--color-skill-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-xl;
+  transition:
+    border-color $transition-base,
+    background-color $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+  }
+}
+
+.skill-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 2.4rem;
+  border-radius: $radius-lg;
+
+  &--indigo {
+    color: var(--color-skill-indigo);
+    background-color: var(--color-skill-indigo-bg);
+  }
+
+  &--emerald {
+    color: var(--color-skill-emerald);
+    background-color: var(--color-skill-emerald-bg);
+  }
+
+  &--amber {
+    color: var(--color-skill-amber);
+    background-color: var(--color-skill-amber-bg);
+  }
+}
+
+.skill-card__title {
+  margin-bottom: 1.6rem;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: var(--color-text);
+}
+
+.skill-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  li {
+    font-size: $font-size-sm;
+    line-height: $line-height-normal;
+    color: var(--color-text-muted);
+  }
+}

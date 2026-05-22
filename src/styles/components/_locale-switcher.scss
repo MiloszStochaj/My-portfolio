@@ -1,0 +1,49 @@
+@use '../abstracts/variables' as *;
+
+.locale-switcher {
+  display: inline-flex;
+  gap: $spacing-1;
+  width: 100%;
+  padding: $spacing-1;
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: $radius-lg;
+
+  &--compact {
+    width: auto;
+  }
+}
+
+.locale-switcher__button {
+  position: relative;
+  flex: 1;
+  min-height: 3.6rem;
+  padding: $spacing-2 $spacing-3;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  border-radius: $radius-md;
+  transition:
+    color var(--theme-transition-duration, 0.35s) ease,
+    background-color var(--theme-transition-duration, 0.35s) ease;
+
+  &:hover {
+    color: var(--color-text);
+  }
+
+  &--active {
+    color: var(--color-text);
+    background-color: var(--color-bg-elevated);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.locale-switcher--compact .locale-switcher__button {
+  flex: 0 0 auto;
+  min-width: 4rem;
+}
+
+.locale-switcher__code {
+  display: block;
+}

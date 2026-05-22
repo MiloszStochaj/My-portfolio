@@ -1,0 +1,12 @@
+{
+  "header": {
+    "title": "About Me"
+  },
+  "paragraphs": [
+    "I have been involved in programming for over 4 years. My journey began with JavaScript and Angular, which quickly evolved into a passion for building professional websites and modern web applications.",
+    "Today, using a wide range of frontend technologies, I help companies create modern websites and web applications with a strong focus on performance, responsiveness, refined user experience, and digital accessibility."
+  ],
+  "image": {
+    "alt": "Frontend Developer Miłosz Stochaj"
+  }
+}

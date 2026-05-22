@@ -1,0 +1,18 @@
+@use '../abstracts/variables' as *;
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: $spacing-4;
+  z-index: $z-tooltip;
+  padding: $spacing-3 $spacing-4;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: var(--color-text);
+  background-color: var(--color-accent-strong);
+  border-radius: $radius-md;
+
+  &:focus {
+    top: $spacing-4;
+  }
+}

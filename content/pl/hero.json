@@ -1,0 +1,20 @@
+{
+  "greeting": "System.out.println(\"Hello World!\");",
+  "heading": {
+    "lead": "Miłosz ",
+    "muted": "M.S.",
+    "trail": " Stochaj"
+  },
+  "subtitle": "Frontend Developer",
+  "description": "Specjalizuję się w tworzeniu nowoczesnych interfejsów webowych z naciskiem na wydajność, responsywność i dopracowane doświadczenie użytkownika. Łączę estetyczny design z czystą architekturą frontendową, budując aplikacje, które są zarówno intuicyjne, jak i skalowalne.",
+  "ctas": {
+    "primary": {
+      "label": "Zobacz moje projekty",
+      "href": "#projects"
+    },
+    "secondary": {
+      "label": "Historia zawodowa",
+      "href": "#experience"
+    }
+  }
+}

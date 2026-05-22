@@ -1,0 +1,25 @@
+:root {
+  --theme-transition-duration: 0.35s;
+}
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color var(--theme-transition-duration) ease,
+    color calc(var(--theme-transition-duration) * 0.85) ease,
+    border-color var(--theme-transition-duration) ease,
+    box-shadow var(--theme-transition-duration) ease,
+    fill var(--theme-transition-duration) ease,
+    stroke var(--theme-transition-duration) ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-transition,
+  html.theme-transition *,
+  html.theme-transition *::before,
+  html.theme-transition *::after {
+    transition: none !important;
+  }
+}

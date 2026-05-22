@@ -1,0 +1,27 @@
+{
+  "header": {
+    "title": "Project Portfolio"
+  },
+  "items": [
+    {
+      "id": "visionalt-seo",
+      "title": "VisionAlt SEO",
+      "description": "A web application designed to generate alternative text (ALT) for images and optimize file names for digital accessibility and SEO best practices. The system analyzes image content, generates accurate descriptions, and supports WordPress integration with automated data uploads.",
+      "tags": ["React", "Vite", "SCSS", "Accessibility", "SEO"],
+      "links": {
+        "github": "#",
+        "external": "#"
+      }
+    },
+    {
+      "id": "korczak-university",
+      "title": "Website for Korczak University",
+      "description": "A modern university website built with WordPress using ACF Blocks and Custom Post Types. The project focused on flexible content management, performance, and scalable component-based architecture.",
+      "tags": ["WordPress", "ACF PRO", "SCSS", "Custom Post Types"],
+      "links": {
+        "github": "#",
+        "external": "#"
+      }
+    }
+  ]
+}

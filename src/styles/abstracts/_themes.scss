@@ -1,0 +1,183 @@
+// Dark theme (default) — palette aligned with original-layout.html (slate / indigo)
+// Skala rem: 1rem = 10px (html { font-size: 62.5% })
+:root {
+  color-scheme: dark;
+
+  --font-size-root: 62.5%;
+
+  --color-bg: #0f172a;
+  --color-bg-content: #0b1120;
+  --color-bg-elevated: #1e293b;
+  --color-bg-muted: rgb(30 41 59 / 50%);
+  --color-bg-image: #0f172a;
+  --color-bg-deep: #020617;
+  --color-bg-section-alt: rgb(2 6 23 / 30%);
+  --color-skill-card-bg: rgb(30 41 59 / 50%);
+  --color-mobile-bar-bg: rgb(15 23 42 / 88%);
+
+  --color-skill-indigo: #818cf8;
+  --color-skill-indigo-bg: rgb(99 102 241 / 10%);
+  --color-skill-emerald: #34d399;
+  --color-skill-emerald-bg: rgb(16 185 129 / 10%);
+  --color-skill-amber: #fbbf24;
+  --color-skill-amber-bg: rgb(245 158 11 / 10%);
+
+  --color-timeline-dot: #4f46e5;
+  --color-timeline-company: #818cf8;
+
+  --timeline-indent: 2.4rem;
+  --timeline-item-padding: 4rem;
+  --timeline-item-gap: 4.8rem;
+  --timeline-padding-bottom: 4.8rem;
+  --timeline-dot-size: 1rem;
+  --timeline-dot-offset: -2.5rem;
+  --timeline-dot-top: 0.5rem;
+  --timeline-achievements-max-width: 67.2rem;
+
+  --color-project-card-bg: rgb(15 23 42 / 50%);
+  --color-project-icon: rgb(99 102 241 / 50%);
+  --color-project-tag: rgb(165 180 252 / 60%);
+
+  --color-text: #ffffff;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-text-faint: #334155;
+  --color-text-secondary: #cbd5e1;
+
+  --color-border: #1e293b;
+  --color-border-strong: #334155;
+
+  --color-accent: #818cf8;
+  --color-accent-strong: #4f46e5;
+  --color-accent-strong-hover: #4338ca;
+  --color-accent-muted: rgb(99 102 241 / 15%);
+
+  --color-focus-ring: #818cf8;
+
+  --color-button-primary-bg: var(--color-accent-strong);
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-hover: var(--color-accent-strong-hover);
+
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text: var(--color-text-secondary);
+  --color-button-secondary-hover: var(--color-bg-muted);
+
+  --color-button-ghost-text: var(--color-text-muted);
+  --color-button-ghost-hover-bg: var(--color-bg-muted);
+
+  --color-theme-track: rgb(15 23 42 / 80%);
+  --color-theme-thumb: #334155;
+  --color-theme-thumb-icon: #e2e8f0;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 50%);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 45%);
+  --hero-cta-shadow: 0 10px 15px -3px rgb(79 70 229 / 20%);
+
+  // Layout
+  --breakpoint-sidebar: 1024px;
+  --sidebar-width: 32rem;
+  --layout-header-height: 6.4rem;
+  --layout-header-height-mobile: 6.4rem;
+  --hero-max-width: 89.6rem;
+  --hero-description-max-width: 67.2rem;
+  --nav-link-color: var(--color-text-muted);
+  --nav-link-color-hover: var(--color-accent);
+  --nav-link-color-active: var(--color-accent);
+
+  --color-overlay: rgb(2 6 23 / 72%);
+  --color-border-subtle: rgb(30 41 59 / 50%);
+  --color-bg-footer: rgb(2 6 23 / 50%);
+  --color-status: #34d399;
+  --color-status-bg: rgb(52 211 153 / 10%);
+  --color-status-dot: #10b981;
+  --color-scroll-top-bg: rgb(79 70 229 / 10%);
+  --color-scroll-top-border: rgb(99 102 241 / 30%);
+  --color-text-on-accent: #ffffff;
+  --scroll-offset: var(--layout-header-height-mobile);
+  --content-max-width: 144rem;
+
+  @media (min-width: 1024px) {
+    --scroll-offset: 2.4rem;
+  }
+}
+
+// Light theme — soft neutral SaaS-inspired palette (not pure white)
+[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #e8ecf2;
+  --color-bg-content: #f3f5f8;
+  --color-bg-elevated: #eef1f6;
+  --color-bg-muted: rgb(100 116 139 / 10%);
+  --color-bg-image: #e4e9f0;
+  --color-bg-deep: #e4e9f0;
+  --color-bg-section-alt: rgb(238 241 246 / 92%);
+  --color-skill-card-bg: rgb(255 255 255 / 72%);
+  --color-mobile-bar-bg: rgb(243 245 248 / 90%);
+
+  --color-skill-indigo: #4f46e5;
+  --color-skill-indigo-bg: rgb(79 70 229 / 9%);
+  --color-skill-emerald: #059669;
+  --color-skill-emerald-bg: rgb(5 150 105 / 9%);
+  --color-skill-amber: #b45309;
+  --color-skill-amber-bg: rgb(180 83 9 / 9%);
+
+  --color-timeline-dot: #6366f1;
+  --color-timeline-company: #4f46e5;
+
+  --color-project-card-bg: rgb(255 255 255 / 78%);
+  --color-project-icon: rgb(79 70 229 / 45%);
+  --color-project-tag: rgb(67 56 202 / 72%);
+
+  --color-text: #1a2332;
+  --color-text-muted: #5a6b7f;
+  --color-text-subtle: #7b8a9c;
+  --color-text-faint: #a3b0be;
+  --color-text-secondary: #3d4f63;
+
+  --color-border: rgb(15 23 42 / 9%);
+  --color-border-strong: rgb(15 23 42 / 14%);
+
+  --color-accent: #6366f1;
+  --color-accent-strong: #4f46e5;
+  --color-accent-strong-hover: #4338ca;
+  --color-accent-muted: rgb(79 70 229 / 11%);
+
+  --color-focus-ring: #6366f1;
+
+  --color-button-primary-bg: var(--color-accent-strong);
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-hover: var(--color-accent-strong-hover);
+
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text: var(--color-text-secondary);
+  --color-button-secondary-hover: var(--color-bg-muted);
+
+  --color-button-ghost-text: var(--color-text-muted);
+  --color-button-ghost-hover-bg: var(--color-bg-muted);
+
+  --color-theme-track: rgb(100 116 139 / 14%);
+  --color-theme-thumb: #ffffff;
+  --color-theme-thumb-icon: #b45309;
+
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 5%);
+  --shadow-md: 0 4px 16px rgb(15 23 42 / 7%), 0 1px 3px rgb(15 23 42 / 4%);
+  --shadow-lg: 0 12px 40px rgb(15 23 42 / 8%), 0 2px 8px rgb(15 23 42 / 4%);
+  --hero-cta-shadow: 0 10px 20px -6px rgb(79 70 229 / 22%);
+
+  --color-overlay: rgb(26 35 50 / 38%);
+  --color-border-subtle: rgb(15 23 42 / 6%);
+  --color-bg-footer: rgb(238 241 246 / 88%);
+  --color-status: #047857;
+  --color-status-bg: rgb(4 120 87 / 9%);
+  --color-status-dot: #10b981;
+  --color-scroll-top-bg: rgb(79 70 229 / 9%);
+  --color-scroll-top-border: rgb(79 70 229 / 18%);
+  --color-text-on-accent: #ffffff;
+  --scroll-offset: var(--layout-header-height-mobile);
+
+  @media (min-width: 1024px) {
+    --scroll-offset: 2.4rem;
+  }
+}

@@ -1,0 +1,62 @@
+@use '../abstracts/variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  border-radius: $radius-md;
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &--primary {
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-button-primary-text);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-button-primary-hover);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--color-button-secondary-bg);
+    color: var(--color-button-secondary-text);
+    border: 1px solid var(--color-border);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-button-secondary-hover);
+    }
+  }
+
+  &--ghost {
+    color: var(--color-button-ghost-text);
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-button-ghost-hover-bg);
+    }
+  }
+
+  &--sm {
+    padding: $spacing-2 $spacing-4;
+    font-size: $font-size-xs;
+  }
+
+  &--lg {
+    padding: $spacing-4 $spacing-8;
+    font-size: $font-size-base;
+  }
+}

@@ -1,0 +1,15 @@
+export type {
+  AboutContent,
+  ExperienceContent,
+  ExperienceItemContent,
+  FooterContent,
+  HeroContent,
+  LocaleContent,
+  NavItemContent,
+  NavigationContent,
+  ProjectItemContent,
+  ProjectLinksContent,
+  ProjectsContent,
+  SkillGroupContent,
+  SkillsContent,
+} from './content/index'

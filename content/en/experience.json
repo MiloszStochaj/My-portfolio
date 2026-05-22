@@ -1,0 +1,40 @@
+{
+  "header": {
+    "title": "Work Experience"
+  },
+  "items": [
+    {
+      "id": "senior-fullstack",
+      "dateRange": "2025 — Present",
+      "role": "Mid Frontend Developer",
+      "company": "PerfekcyjneStrony",
+      "achievements": [
+        "Developing websites using WordPress ACF and Gutenberg, deploying websites to servers, and integrating external APIs.",
+        "Migrating websites to new hosting environments along with database migration.",
+        "Optimizing websites for digital accessibility WCAG and SEO."
+      ]
+    },
+    {
+      "id": "mid-backend",
+      "dateRange": "2024 — Present",
+      "role": "Mid Frontend Developer",
+      "company": "Freelancer",
+      "achievements": [
+        "Designing and developing websites and e-commerce stores based on WordPress Gutenberg and ACF.",
+        "Integrating payment systems for e-commerce platforms.",
+        "Optimizing websites for SEO and performance.",
+        "Building modern web applications using React and Next.js."
+      ]
+    },
+    {
+      "id": "junior-web",
+      "dateRange": "2022 — 2024",
+      "role": "Junior Frontend Developer",
+      "company": "Nicman Group",
+      "achievements": [
+        "Developing the frontend layer of the Handbid application in Angular and supporting the maintenance of the Handbid dashboard built in PHP.",
+        "Supporting the development team in building the Health Care System web application using Angular."
+      ]
+    }
+  ]
+}

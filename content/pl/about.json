@@ -1,0 +1,12 @@
+{
+  "header": {
+    "title": "O mnie"
+  },
+  "paragraphs": [
+    "Z programowaniem jestem związany od ponad 4 lat. Moja droga zaczęła się od pracy z JavaScriptem oraz Angularem, co szybko przerodziło się w pasję do tworzenia profesjonalnych stron i aplikacji webowych.",
+    "Dziś za pomocą różnych technologii frontendowych pomagam firmom tworzyć nowoczesne strony internetowe oraz aplikacje webowe z naciskiem na wydajność, responsywność, dopracowane doświadczenie użytkownika i dostępność cyfrową."
+  ],
+  "image": {
+    "alt": "Frontend Developer Miłosz Stochaj"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "greeting": "System.out.println(\"Hello World!\");",
+  "heading": {
+    "lead": "Miłosz ",
+    "muted": "M.S.",
+    "trail": " Stochaj"
+  },
+  "subtitle": "Frontend Developer",
+  "description": "I specialize in building modern web interfaces with a strong focus on performance, responsiveness, and refined user experience. I combine aesthetic design with clean frontend architecture to create applications that are both intuitive and scalable.",
+  "ctas": {
+    "primary": {
+      "label": "View My Projects",
+      "href": "#projects"
+    },
+    "secondary": {
+      "label": "Work Experience",
+      "href": "#experience"
+    }
+  }
+}

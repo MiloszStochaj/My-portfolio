@@ -1,0 +1,22 @@
+@use '../abstracts/mixins' as *;
+
+.section--skills {
+  @include section-inline-padding;
+
+  padding-block: 9.6rem;
+  background-color: var(--color-bg-section-alt);
+}
+
+.skills__header {
+  margin-bottom: 6.4rem;
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.2rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

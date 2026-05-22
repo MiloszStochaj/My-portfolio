@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.scroll-to-top {
+  position: fixed;
+  right: $spacing-6;
+  bottom: $spacing-6;
+  z-index: $z-sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  color: var(--color-accent);
+  background-color: var(--color-scroll-top-bg);
+  border: 1px solid var(--color-scroll-top-border);
+  border-radius: $radius-lg;
+  box-shadow: var(--shadow-md);
+  transition:
+    color $transition-base,
+    background-color $transition-base,
+    border-color $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    color: var(--color-text-on-accent);
+    background-color: var(--color-accent-strong);
+    border-color: var(--color-accent-strong);
+    transform: translateY(-2px);
+  }
+
+  @include respond-to(lg) {
+    right: $spacing-8;
+    bottom: $spacing-8;
+  }
+}

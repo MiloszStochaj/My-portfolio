@@ -1,0 +1,25 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section--footer {
+  @include section-inline-padding;
+
+  padding-block: $spacing-12;
+  background-color: var(--color-bg-footer);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.footer__content {
+  text-align: center;
+}
+
+.footer__text {
+  margin-bottom: $spacing-2;
+  font-size: $font-size-sm;
+  color: var(--color-text-subtle);
+}
+
+.footer__meta {
+  font-size: 1rem;
+  color: var(--color-text-faint);
+}

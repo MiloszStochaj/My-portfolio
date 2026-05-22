@@ -1,0 +1,40 @@
+{
+  "header": {
+    "title": "Doświadczenie zawodowe"
+  },
+  "items": [
+    {
+      "id": "senior-fullstack",
+      "dateRange": "2025 — Obecnie",
+      "role": "Mid Frontend Developer",
+      "company": "PerfekcyjneStrony",
+      "achievements": [
+        "Programowanie stron internetowych w WordPress ACF oraz Gutenberg, wdrażanie stron internetowych na serwerach oraz integracja z API",
+        "Migracja stron internetowych na nowy hosting oraz migracja baz danych.",
+        "Optymalizacja stron internetowych pod kątem dostępności cyfrowej WCAG oraz SEO"
+      ]
+    },
+    {
+      "id": "mid-backend",
+      "dateRange": "2024 — Obecnie",
+      "role": "Mid Frontend Developer",
+      "company": "Freelancer",
+      "achievements": [
+        "Projektowanie i wdrażanie stron oraz sklepów internetowych opartych o Gutenberg/ACF WordPress",
+        "Integracja systemów płatności w sklepach e-commerce.",
+        "Optymalizacja stron internetowych pod kątem SEO oraz szybkości ładowania",
+        "Budowanie aplikacji webowych w React oraz Next.js"
+      ]
+    },
+    {
+      "id": "junior-web",
+      "dateRange": "2022-2024",
+      "role": "Junior Frontend Developer",
+      "company": "Nicman Group",
+      "achievements": [
+        "Rozwój frontendowej warstwy aplikacji Handbid w Angular oraz wsparcie w utrzymaniu dashboardu dla aplikacji Handbid w PHP",
+        "Wsparcie zespołu programowaniu webowej aplikacji Health Care System przy użyciu Angular."
+      ]
+    }
+  ]
+}

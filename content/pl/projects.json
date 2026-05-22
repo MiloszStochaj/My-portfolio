@@ -1,0 +1,27 @@
+{
+  "header": {
+    "title": "Portfolio projektowe"
+  },
+  "items": [
+    {
+      "id": "visionalt-seo",
+      "title": "VisionAlt SEO",
+      "description": "Aplikacja webowa do generowania opisów alternatywnych (ALT) dla obrazów oraz optymalizacji nazw plików pod kątem dostępności cyfrowej i SEO. System analizuje zawartość obrazów, generuje trafne opisy oraz umożliwia integrację z WordPress i automatyczne przesyłanie danych.",
+      "tags": ["React", "Vite", "SCSS", "Accessibility", "SEO"],
+      "links": {
+        "github": "https://github.com/MiloszStochaj/VisionAlt",
+        "external": "https://visionalt.netlify.app/dashboard"
+      }
+    },
+    {
+      "id": "korczak-university",
+      "title": "Strona internetowa dla Uczelni Korczaka",
+      "description": "Nowoczesna strona internetowa dla Uczelni Korczaka oparta o WordPress z wykorzystaniem ACF Blocks oraz Custom Post Types. Projekt skupiał się na elastycznym systemie zarządzania treścią, wydajności i skalowalnej architekturze komponentów.",
+      "tags": ["WordPress", "ACF PRO", "SCSS", "Custom Post Types"],
+      "links": {
+        "github": "#",
+        "external": "https://uczelniakorczaka.pstrony.webd.pro/"
+      }
+    }
+  ]
+}

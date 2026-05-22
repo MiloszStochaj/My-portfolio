@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as *;
+
+.timeline {
+  margin-left: var(--timeline-indent);
+  padding-bottom: var(--timeline-padding-bottom);
+  border-left: 1px solid var(--color-border);
+}
+
+.timeline__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--timeline-item-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline__item {
+  list-style: none;
+}

@@ -1,0 +1,51 @@
+{
+  "header": {
+    "title": "Skills"
+  },
+  "groups": [
+    {
+      "id": "frontend",
+      "title": "Frontend",
+      "items": [
+        "JavaScript",
+        "React / Next.js",
+        "Angular",
+        "TypeScript",
+        "SCSS / Sass",
+        "Tailwind CSS",
+        "Vite",
+        "Webpack / Babel",
+        "Responsive Design",
+        "Component Architecture",
+        "SPA Development",
+        "Performance Optimization",
+        "Accessibility (WCAG / a11y)"
+      ]
+    },
+    {
+      "id": "backend",
+      "title": "Backend",
+      "items": [
+        "PHP",
+        "WordPress / ACF Pro",
+        "Joomla",
+        "REST API"
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "title": "Infrastructure",
+      "items": [
+        "GitHub / Bitbucket",
+        "Jenkins",
+        "CI/CD",
+        "Git / Agile",
+        "Jira / Asana / ClickUp",
+        "Cursor",
+        "Claude",
+        "Gemini",
+        "OpenAI Codex"
+      ]
+    }
+  ]
+}

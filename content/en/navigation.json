@@ -1,0 +1,32 @@
+{
+  "brand": {
+    "name": "Miłosz Stochaj",
+    "role": "Frontend Developer"
+  },
+  "navSectionLabel": "Navigation",
+  "statusSectionLabel": "Status",
+  "status": {
+    "label": "Available for work"
+  },
+  "themeSectionLabel": "Appearance",
+  "theme": {
+    "switchToLight": "Enable light mode",
+    "switchToDark": "Enable dark mode"
+  },
+  "localeSectionLabel": "Language",
+  "locale": {
+    "pl": "Polish",
+    "en": "English"
+  },
+  "cv": {
+    "label": "Download CV (PDF)",
+    "href": "#"
+  },
+  "nav": [
+    { "id": "hero", "label": "01. Home" },
+    { "id": "about", "label": "02. About Me" },
+    { "id": "skills", "label": "03. Skills" },
+    { "id": "experience", "label": "04. Experience" },
+    { "id": "projects", "label": "05. Projects" }
+  ]
+}

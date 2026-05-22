@@ -1,0 +1,11 @@
+@use '../abstracts/mixins' as *;
+
+.section--experience {
+  @include section-inline-padding;
+
+  padding-block: 9.6rem;
+}
+
+.experience__header {
+  margin-bottom: 6.4rem;
+}

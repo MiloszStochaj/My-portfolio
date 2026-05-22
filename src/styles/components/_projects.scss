@@ -1,0 +1,22 @@
+@use '../abstracts/mixins' as *;
+
+.section--projects {
+  @include section-inline-padding;
+
+  padding-block: 9.6rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.projects__header {
+  margin-bottom: 6.4rem;
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.2rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

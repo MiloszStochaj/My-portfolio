@@ -1,0 +1,52 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.section {
+  scroll-margin-top: calc(var(--scroll-offset) + $spacing-4);
+  padding-block: $spacing-16;
+
+  @include respond-to(lg) {
+    scroll-margin-top: $spacing-8;
+  }
+
+  @include respond-to(md) {
+    padding-block: $spacing-20;
+  }
+
+  &__header {
+    margin-bottom: $spacing-8;
+  }
+
+  &__title {
+    margin-bottom: $spacing-2;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-semibold;
+    color: var(--color-text);
+  }
+
+  &__description {
+    max-width: 60rem;
+    font-size: $font-size-lg;
+    color: var(--color-text-muted);
+  }
+
+  &__body {
+    width: 100%;
+  }
+
+  &--compact {
+    padding-block: $spacing-10;
+
+    @include respond-to(md) {
+      padding-block: $spacing-12;
+    }
+  }
+
+  &--spacious {
+    padding-block: $spacing-20;
+
+    @include respond-to(md) {
+      padding-block: $spacing-24;
+    }
+  }
+}
