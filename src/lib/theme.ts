@@ -1,4 +1,9 @@
-import { THEME_META_COLORS, THEME_STORAGE_KEY, THEME_TRANSITION_MS } from '@/config/theme'
+import {
+  DEFAULT_THEME,
+  THEME_META_COLORS,
+  THEME_STORAGE_KEY,
+  THEME_TRANSITION_MS,
+} from '@/config/theme'
 import type { Theme, ThemePreference } from '@/types/theme'
 
 export function getSystemTheme(): Theme {
@@ -18,7 +23,7 @@ export function getStoredThemePreference(): ThemePreference {
 }
 
 export function resolveTheme(preference: ThemePreference = getStoredThemePreference()): Theme {
-  return preference ?? getSystemTheme()
+  return preference ?? DEFAULT_THEME
 }
 
 export function applyTheme(theme: Theme, options?: { animate?: boolean }) {

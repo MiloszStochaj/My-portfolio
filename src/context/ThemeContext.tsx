@@ -2,7 +2,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -56,22 +55,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     window.localStorage.removeItem(THEME_STORAGE_KEY)
     applyTheme(systemTheme, { animate: true })
   }, [])
-
-  useEffect(() => {
-    if (preference !== null) return
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-    const handleSystemThemeChange = () => {
-      const systemTheme = getSystemTheme()
-      setThemeState(systemTheme)
-      applyTheme(systemTheme, { animate: true })
-    }
-
-    mediaQuery.addEventListener('change', handleSystemThemeChange)
-
-    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange)
-  }, [preference])
 
   const value = useMemo<ThemeContextValue>(
     () => ({
