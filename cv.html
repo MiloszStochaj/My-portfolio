@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Miłosz Stochaj - Frontend Developer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- A4: ten sam układ na ekranie i w PDF -->
+    <style>
+        :root {
+            --a4-width: 210mm;
+            --a4-height: 297mm;
+            --sidebar-width: 33.333%;
+            --cv-pad-y: 8mm;
+            --cv-pad-sidebar-x: 7mm;
+            --cv-pad-main-x: 6mm;
+            /* Odstępy — naturalne wypełnienie strony */
+            --cv-gap-section: 5mm;
+            --cv-gap-sidebar: 4mm;
+            --cv-gap-job: 2.8mm;
+            --cv-gap-list: 1.6mm;
+            /* Typografia — większa, czytelna na A4 */
+            --cv-font-name: 27px;
+            --cv-font-role: 12px;
+            --cv-font-section: 12.5px;
+            --cv-font-body: 11.5px;
+            --cv-font-body-sm: 10.5px;
+            --cv-font-caption: 9.75px;
+            --cv-font-sidebar-h: 10px;
+            --cv-font-sidebar: 11px;
+            --cv-font-tag: 10px;
+            --cv-font-rodo: 8.5px;
+            --cv-line: 1.52;
+            --cv-line-tight: 1.38;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: 210mm 297mm;
+            margin: 0;
+        }
+
+        /* —— Układ arkusza (ekran = druk) —— */
+        .cv-container {
+            width: var(--a4-width);
+            height: var(--a4-height);
+            min-height: var(--a4-height);
+            max-height: var(--a4-height);
+            overflow: hidden;
+            background: #fff;
+            position: relative;
+        }
+
+        .cv-grid {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        #sidebarBg {
+            flex: 0 0 var(--sidebar-width);
+            width: var(--sidebar-width);
+            height: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: var(--cv-pad-y) var(--cv-pad-sidebar-x);
+        }
+
+        .cv-sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--cv-gap-sidebar);
+        }
+
+        .cv-sidebar-title {
+            font-size: var(--cv-font-sidebar-h);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #94a3b8;
+            margin-bottom: 1.5mm;
+            padding-bottom: 0.5mm;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .cv-sidebar-text {
+            font-size: var(--cv-font-sidebar);
+            line-height: var(--cv-line);
+            color: #cbd5e1;
+        }
+
+        .cv-sidebar-text li {
+            margin-top: var(--cv-gap-list);
+        }
+
+        .cv-sidebar-text li:first-child {
+            margin-top: 0;
+        }
+
+        .cv-tag {
+            font-size: var(--cv-font-tag);
+            font-weight: 500;
+            padding: 0.6mm 1.4mm;
+            border-radius: 3px;
+        }
+
+        .cv-avatar {
+            width: 14mm;
+            height: 14mm;
+            font-size: 15px;
+        }
+
+        .cv-lang-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+        }
+
+        .cv-rodo {
+            margin-top: auto;
+            padding-top: 3mm;
+            border-top: 1px solid #1e293b;
+            font-size: var(--cv-font-rodo);
+            line-height: var(--cv-line-tight);
+            color: #64748b;
+            text-align: justify;
+        }
+
+        .cv-main {
+            flex: 1 1 auto;
+            width: calc(100% - var(--sidebar-width));
+            height: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: var(--cv-pad-y) var(--cv-pad-main-x) var(--cv-pad-y) 5mm;
+            overflow: hidden;
+            background: #fff;
+            font-size: var(--cv-font-body);
+            line-height: var(--cv-line);
+        }
+
+        /* Prawa kolumna: zwarty przepływ, większa czcionka, stałe odstępy */
+        .cv-main-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--cv-gap-section);
+            flex: 1 1 auto;
+        }
+
+        .cv-name {
+            font-size: var(--cv-font-name);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: #020617;
+        }
+
+        .cv-role {
+            font-size: var(--cv-font-role);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 1mm;
+        }
+
+        .cv-block-header {
+            padding-bottom: 3mm;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .cv-section-title {
+            font-size: var(--cv-font-section);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #0f172a;
+            margin-bottom: 2mm;
+            display: flex;
+            align-items: center;
+            gap: 1.5mm;
+        }
+
+        .cv-section-title svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+
+        .cv-body {
+            font-size: var(--cv-font-body);
+            line-height: var(--cv-line);
+            color: #475569;
+        }
+
+        .cv-body-sm {
+            font-size: var(--cv-font-body-sm);
+            line-height: var(--cv-line);
+            color: #475569;
+        }
+
+        .cv-job-title {
+            font-size: var(--cv-font-body);
+            font-weight: 700;
+            color: #1e293b;
+            line-height: var(--cv-line-tight);
+        }
+
+        .cv-job-title span {
+            font-weight: 400;
+            color: #94a3b8;
+        }
+
+        .cv-date-badge {
+            font-size: var(--cv-font-caption);
+            font-weight: 600;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 0.5mm 1.5mm;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        .cv-experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--cv-gap-job);
+            border-left: 2px solid #f1f5f9;
+            padding-left: 3mm;
+            margin-left: 1.5mm;
+        }
+
+        .cv-experience-list ul {
+            margin-top: 1mm;
+        }
+
+        .cv-experience-list li {
+            font-size: var(--cv-font-body-sm);
+            line-height: var(--cv-line);
+            color: #475569;
+            margin-top: var(--cv-gap-list);
+        }
+
+        .cv-experience-list li:first-child {
+            margin-top: 0;
+        }
+
+        .cv-projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5mm;
+        }
+
+        .cv-project-card {
+            border: 1px solid #f1f5f9;
+            border-radius: 6px;
+            padding: 2.5mm;
+            background: rgba(248, 250, 252, 0.9);
+        }
+
+        .cv-project-card h4 {
+            font-size: var(--cv-font-body);
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1mm;
+        }
+
+        .cv-project-card p {
+            font-size: var(--cv-font-body-sm);
+            line-height: var(--cv-line-tight);
+            color: #475569;
+            margin-bottom: 1.5mm;
+        }
+
+        .cv-project-tags {
+            font-size: var(--cv-font-caption);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #6d28d9;
+        }
+
+        .cv-edu-box {
+            background: rgba(248, 250, 252, 0.9);
+            border-radius: 6px;
+            padding: 2.5mm;
+        }
+
+        @media print {
+            html, body {
+                width: var(--a4-width) !important;
+                height: var(--a4-height) !important;
+                min-height: 0 !important;
+                max-height: var(--a4-height) !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                background: #fff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            body.min-h-screen {
+                min-height: 0 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .cv-container {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                transform: none !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+
+            #sidebarBg {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .cv-main-content > *,
+            .cv-sidebar-inner > * {
+                margin-top: 0 !important;
+            }
+
+            .cv-sidebar-text li,
+            .cv-experience-list li {
+                margin-top: var(--cv-gap-list) !important;
+            }
+
+            .cv-container .hover\:shadow-sm,
+            .cv-container .transition {
+                box-shadow: none !important;
+                transition: none !important;
+            }
+
+            [contenteditable="true"],
+            [contenteditable="true"]:focus {
+                outline: none !important;
+                background: transparent !important;
+            }
+        }
+
+        /* Styl edycji bezpośredniej (tylko ekran) */
+        @media screen {
+            [contenteditable="true"] {
+                outline: 1.5px dashed rgba(124, 58, 237, 0.4);
+                outline-offset: 1px;
+                border-radius: 3px;
+            }
+            [contenteditable="true"]:focus {
+                outline: 2px solid #7c3aed;
+                background-color: rgba(124, 58, 237, 0.03);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans text-slate-800 antialiased">
+
+    <!-- PANEL STEROWANIA -->
+    <div class="no-print bg-white border-b border-slate-200 sticky top-0 z-50 px-4 py-2.5 shadow-sm">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+                <div class="p-1.5 bg-brand-600 text-white rounded-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-sm font-bold text-slate-900 leading-none">Kreator CV Miłosza Stochaża (A4)</h1>
+                    <p class="text-[11px] text-slate-500 mt-0.5">PDF: Drukuj → Zapisz jako PDF → A4, <strong>Marginesy: Brak</strong>, Skala 100%, grafika w tle wł.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <!-- Wybór koloru akcentu -->
+                <div class="flex items-center bg-slate-100 rounded-lg p-1 gap-1 mr-1 text-xs">
+                    <button onclick="setTheme('violet')" class="w-5 h-5 rounded-full bg-violet-600 border border-white hover:scale-110 transition" title="Fioletowy"></button>
+                    <button onclick="setTheme('emerald')" class="w-5 h-5 rounded-full bg-emerald-600 border border-white hover:scale-110 transition" title="Szmaragdowy"></button>
+                    <button onclick="setTheme('slate')" class="w-5 h-5 rounded-full bg-slate-800 border border-white hover:scale-110 transition" title="Grafitowy"></button>
+                    <button onclick="setTheme('sky')" class="w-5 h-5 rounded-full bg-sky-600 border border-white hover:scale-110 transition" title="Niebieski"></button>
+                </div>
+
+                <button id="editBtn" onclick="toggleEdit()" class="flex items-center gap-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs rounded-lg transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    <span>Edytuj Dane</span>
+                </button>
+
+                <button onclick="downloadHTML()" class="flex items-center gap-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xs rounded-lg transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    <span>Pobierz HTML</span>
+                </button>
+
+                <button onclick="triggerPrint()" class="flex items-center gap-1 px-3 py-1.5 bg-brand-600 hover:bg-brand-700 text-white font-medium text-xs rounded-lg transition shadow-md shadow-brand-600/10">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    <span>Drukuj / PDF</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARKUSZ CV (A4 o stałych wymiarach dla idealnego podglądu) -->
+    <div class="cv-container mx-auto my-4 shadow-xl border border-slate-200/60">
+        
+        <div class="cv-grid">
+            
+            <!-- PANEL LEWY -->
+            <div id="sidebarBg" class="bg-slate-900 text-white transition-colors duration-300">
+                <div class="cv-sidebar-inner">
+                    <!-- Avatar z inicjałami -->
+                    <div class="flex justify-start">
+                        <div id="themeAvatar" class="cv-avatar rounded-xl bg-brand-600 text-white font-extrabold flex items-center justify-center shadow-md">
+                            MS
+                        </div>
+                    </div>
+
+                    <!-- Sekcja: Kontakt -->
+                    <div>
+                        <h3 class="cv-sidebar-title">Kontakt</h3>
+                        <ul class="cv-sidebar-text">
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand-600 shrink-0" id="iconColor1">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                                </span>
+                                <span class="editable" data-key="location">Leszno, Polska / Zdalnie</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand-600 shrink-0" id="iconColor2">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </span>
+                                <span class="editable" data-key="phone">+48 725 491 258</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand-600 shrink-0" id="iconColor3">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </span>
+                                <span class="editable break-all" data-key="email">milosz.stochaj@gmail.com</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand-600 shrink-0" id="iconColor4">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                </span>
+                                <span class="editable break-all" data-key="portfolio">miloszstochaj.com</span>
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-brand-600 shrink-0" id="iconColor5">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                                </span>
+                                <span class="editable" data-key="github">github.com/MiloszStochaj</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Sekcja: Główne Technologie -->
+                    <div>
+                        <h3 class="cv-sidebar-title">Technologie</h3>
+                        <div class="flex flex-wrap gap-1">
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">React</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">Next.js</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">TypeScript</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">JavaScript (ES6+)</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">SCSS</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">PHP</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">WCAG</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">Node.js</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">WordPress ACF PRO</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">Git / GitHub</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">GraphQL / REST</span>
+                            <span class="editable cv-tag bg-slate-800 text-slate-200">Zustand</span>
+                        </div>
+                    </div>
+
+                    <!-- Sekcja: Metodyki i Narzędzia -->
+                    <div>
+                        <h3 class="cv-sidebar-title">Metodyki & Inne</h3>
+                        <ul class="cv-sidebar-text list-disc list-inside">
+                            <li class="editable">Frontend / Web Developer</li>
+                            <li class="editable">Responsive Web Design (RWD)</li>
+                            <li class="editable">Figma to Pixel-Perfect Code</li>
+                            <li class="editable">Optymalizacja Core Web Vitals</li>
+                            <li class="editable">Semantyczny HTML & SEO & WCAG</li>
+                        </ul>
+                    </div>
+
+                    <!-- Sekcja: Języki -->
+                    <div>
+                        <h3 class="cv-sidebar-title">Języki</h3>
+                        <div class="cv-lang-list cv-sidebar-text">
+                            <div>
+                                <div class="flex justify-between font-semibold mb-0.5" style="font-size:var(--cv-font-body-sm)">
+                                    <span class="editable">Polski</span>
+                                    <span class="editable text-slate-400">Ojczysty</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1">
+                                    <div class="bg-brand-600 h-1 rounded-full" id="langBar1" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between font-semibold mb-0.5" style="font-size:var(--cv-font-body-sm)">
+                                    <span class="editable">Angielski</span>
+                                    <span class="editable text-slate-400">Zaawansowany (B2)</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-1">
+                                    <div class="bg-brand-600 h-1 rounded-full" id="langBar2" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cv-rodo">
+                    <span class="editable" data-key="rodo">Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w CV dla potrzeb niezbędnych do realizacji procesu rekrutacji zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).</span>
+                </div>
+            </div>
+
+            <!-- PANEL PRAWY -->
+            <div class="cv-main">
+                <div class="cv-main-content">
+                    <div class="cv-block cv-block-header">
+                        <h1 class="cv-name editable" data-key="name">MIŁOSZ STOCHAJ</h1>
+                        <h2 class="cv-role text-brand-600 transition-colors duration-300" id="roleTitle">Frontend Developer / Web Developer</h2>
+                    </div>
+
+                    <div class="cv-block">
+                        <h3 class="cv-section-title">
+                            <span class="text-brand-600 transition-colors duration-300" id="sectionIcon1">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            </span>
+                            Profil Zawodowy
+                        </h3>
+                        <p class="cv-body text-justify editable" data-key="profile">
+                            Specjalizuję się w tworzeniu nowoczesnych interfejsów webowych z naciskiem na wydajność, responsywność i dopracowane doświadczenie użytkownika. Łączę estetyczny design z czystą architekturą frontendową, budując aplikacje, które są zarówno intuicyjne, jak i skalowalne. Z programowaniem jestem związany od ponad 4 lat. Moja droga zaczęła się od pracy z JavaScriptem oraz Angularem, co szybko przerodziło się w pasję do tworzenia profesjonalnych stron i aplikacji webowych. Dziś za pomocą różnych technologii frontendowych pomagam firmom tworzyć nowoczesne strony internetowe oraz aplikacje webowe z naciskiem na wydajność, responsywność, dopracowane doświadczenie użytkownika i dostępność cyfrową.
+                        </p>
+                    </div>
+
+                    <div class="cv-block">
+                        <h3 class="cv-section-title">
+                            <span class="text-brand-600 transition-colors duration-300" id="sectionIcon2">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            </span>
+                            Doświadczenie Zawodowe
+                        </h3>
+                        
+                        <div class="cv-experience-list">
+                            <!-- Pozycja 1 -->
+                            <div class="relative">
+                                <div class="absolute -left-[15px] top-1 w-2 h-2 rounded-full bg-brand-600 border-2 border-white shadow transition-colors duration-300" id="timelineDot1"></div>
+                                <div class="flex items-center justify-between gap-1 mb-0.5">
+                                    <h4 class="cv-job-title editable">Mid Frontend Developer <span>| PerfekcyjneStrony</span></h4>
+                                    <span class="cv-date-badge editable">2025 – Obecnie</span>
+                                </div>
+                                <ul class="list-disc list-inside">
+                                    <li class="editable">Programowanie stron internetowych w WordPress ACF oraz Gutenberg, wdrażanie na serwerach oraz integracja z API.</li>
+                                    <li class="editable">Migracja stron internetowych na nowy hosting oraz migracja baz danych.</li>
+                                    <li class="editable">Optymalizacja stron internetowych pod kątem dostępności cyfrowej WCAG oraz SEO.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pozycja 2 -->
+                            <div class="relative">
+                                <div class="absolute -left-[15px] top-1 w-2 h-2 rounded-full bg-brand-600 border-2 border-white shadow transition-colors duration-300" id="timelineDot2"></div>
+                                <div class="flex items-center justify-between gap-1 mb-0.5">
+                                    <h4 class="cv-job-title editable">Mid Frontend Developer <span>| Freelancer</span></h4>
+                                    <span class="cv-date-badge editable">2024 – Obecnie</span>
+                                </div>
+                                <ul class="list-disc list-inside">
+                                    <li class="editable">Projektowanie i wdrażanie stron oraz sklepów internetowych opartych o Gutenberg/ACF WordPress.</li>
+                                    <li class="editable">Integracja systemów płatności w sklepach e-commerce oraz optymalizacja SEO i szybkości ładowania.</li>
+                                    <li class="editable">Projektowanie i budowanie interaktywnych aplikacji webowych w React oraz Next.js.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pozycja 3 -->
+                            <div class="relative">
+                                <div class="absolute -left-[15px] top-1 w-2 h-2 rounded-full bg-brand-600 border-2 border-white shadow transition-colors duration-300" id="timelineDot3"></div>
+                                <div class="flex items-center justify-between gap-1 mb-0.5">
+                                    <h4 class="cv-job-title editable">Junior Frontend Developer <span>| Nicman Group</span></h4>
+                                    <span class="cv-date-badge editable">2022 – 2024</span>
+                                </div>
+                                <ul class="list-disc list-inside">
+                                    <li class="editable">Rozwój frontendowej warstwy aplikacji Handbid w Angular oraz wsparcie w utrzymaniu dashboardu w PHP.</li>
+                                    <li class="editable">Wsparcie zespołu przy projektowaniu i programowaniu webowej aplikacji Health Care System z użyciem Angular.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-block">
+                        <h3 class="cv-section-title">
+                            <span class="text-brand-600 transition-colors duration-300" id="sectionIcon3">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </span>
+                            Wybrane Projekty
+                        </h3>
+                        <div class="cv-projects-grid">
+                            <div class="cv-project-card">
+                                <h4 class="editable">VisionAlt SEO</h4>
+                                <p class="editable">Aplikacja webowa analizująca obrazy, generująca opisy alternatywne (ALT) dla dostępności cyfrowej i automatyzująca przesył do WordPress.</p>
+                                <div class="cv-project-tags text-brand-700 editable">React • Vite • SCSS • Accessibility • SEO</div>
+                            </div>
+                            <div class="cv-project-card">
+                                <h4 class="editable">Strona dla Uczelni Korczaka</h4>
+                                <p class="editable">Nowoczesny serwis oparty o WordPress z ACF Blocks i Custom Post Types. Skupiony na elastycznym CMS, optymalizacji oraz WCAG.</p>
+                                <div class="cv-project-tags text-brand-700 editable">WordPress • ACF PRO • SCSS • Custom Post Types</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cv-block">
+                        <h3 class="cv-section-title">
+                            <span class="text-brand-600 transition-colors duration-300" id="sectionIcon4">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg>
+                            </span>
+                            Edukacja i Rozwój
+                        </h3>
+                        <div class="cv-edu-box">
+                            <div class="flex justify-between items-center gap-1 mb-0.5">
+                                <h4 class="cv-job-title editable">Kierunek Informatyczny & Kursy Specjalistyczne</h4>
+                                <span class="cv-date-badge editable">2020 – Obecnie</span>
+                            </div>
+                            <p class="cv-body-sm editable">Ciągła nauka technologii webowych, rozbudowa kompetencji architektonicznych oraz realizacja komercyjnych projektów.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="no-print text-center text-xs text-slate-400 py-3 max-w-lg mx-auto leading-relaxed">
+        Arkusz A4 — <strong>Marginesy: Brak</strong>, <strong>Skala: 100%</strong>, grafika w tle wł.
+        Drobna korekta gęstości: zmienne <code>--cv-font-body</code> i <code>--cv-gap-section</code> na górze pliku (w <code>:root</code>).
+    </div>
+
+    <!-- Skrypty do obsługi edycji, pobierania i stylów -->
+    <script>
+        let editMode = false;
+
+        function toggleEdit() {
+            editMode = !editMode;
+            const btn = document.getElementById('editBtn');
+            const editables = document.querySelectorAll('.editable');
+
+            if (editMode) {
+                editables.forEach(el => {
+                    el.setAttribute('contenteditable', 'true');
+                });
+                btn.classList.remove('bg-slate-800', 'hover:bg-slate-700');
+                btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                btn.innerHTML = `
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span>Zakończ edycję</span>
+                `;
+            } else {
+                editables.forEach(el => {
+                    el.removeAttribute('contenteditable');
+                });
+                btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                btn.classList.add('bg-slate-800', 'hover:bg-slate-700');
+                btn.innerHTML = `
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    <span>Edytuj Dane</span>
+                `;
+                updateInitials();
+            }
+        }
+
+        function updateInitials() {
+            const nameText = document.querySelector('[data-key="name"]').innerText.trim();
+            if (nameText) {
+                const parts = nameText.split(' ');
+                let initials = "";
+                if (parts.length > 0) initials += parts[0][0] || "";
+                if (parts.length > 1) initials += parts[1][0] || "";
+                document.getElementById('themeAvatar').innerText = initials.toUpperCase();
+            }
+        }
+
+        function downloadHTML() {
+            if (editMode) toggleEdit();
+            const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            let name = document.querySelector('[data-key="name"]').innerText.trim().replace(/\s+/g, '_');
+            const filename = `CV_${name || 'Milosz_Stochaj'}.html`;
+            
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function prepareForPrint() {
+            if (editMode) toggleEdit();
+            document.querySelectorAll('[contenteditable="true"]').forEach(function (el) {
+                el.removeAttribute('contenteditable');
+            });
+            var cv = document.querySelector('.cv-container');
+            if (cv) {
+                cv.style.transform = '';
+                cv.style.width = '';
+                cv.style.height = '';
+            }
+        }
+
+        function triggerPrint() {
+            prepareForPrint();
+            window.focus();
+            window.print();
+        }
+
+        window.addEventListener('beforeprint', prepareForPrint);
+
+        function setTheme(color) {
+            const sidebarBg = document.getElementById('sidebarBg');
+            const avatar = document.getElementById('themeAvatar');
+            const roleTitle = document.getElementById('roleTitle');
+            const langBar1 = document.getElementById('langBar1');
+            const langBar2 = document.getElementById('langBar2');
+
+            const sectionIcons = [
+                document.getElementById('sectionIcon1'),
+                document.getElementById('sectionIcon2'),
+                document.getElementById('sectionIcon3'),
+                document.getElementById('sectionIcon4')
+            ];
+            const timelineDots = [
+                document.getElementById('timelineDot1'),
+                document.getElementById('timelineDot2'),
+                document.getElementById('timelineDot3')
+            ];
+            const contactIcons = [
+                document.getElementById('iconColor1'),
+                document.getElementById('iconColor2'),
+                document.getElementById('iconColor3'),
+                document.getElementById('iconColor4'),
+                document.getElementById('iconColor5')
+            ];
+
+            avatar.className = "cv-avatar rounded-xl text-white font-extrabold flex items-center justify-center shadow-md";
+            roleTitle.className = "text-xs font-bold uppercase tracking-wider mt-0.5 transition-colors duration-300";
+            langBar1.className = "h-1 rounded-full";
+            langBar2.className = "h-1 rounded-full";
+
+            let primaryClass = "";
+            let textPrimaryClass = "";
+
+            if (color === 'emerald') {
+                sidebarBg.className = "bg-[#064e3b] text-white transition-colors duration-300";
+                avatar.classList.add('bg-emerald-600');
+                roleTitle.classList.add('text-emerald-600');
+                langBar1.classList.add('bg-emerald-600');
+                langBar2.classList.add('bg-emerald-600');
+                primaryClass = 'text-emerald-500';
+                textPrimaryClass = 'bg-emerald-600';
+            } else if (color === 'slate') {
+                sidebarBg.className = "bg-slate-800 text-white transition-colors duration-300";
+                avatar.classList.add('bg-slate-600');
+                roleTitle.classList.add('text-slate-700');
+                langBar1.classList.add('bg-slate-600');
+                langBar2.classList.add('bg-slate-600');
+                primaryClass = 'text-slate-500';
+                textPrimaryClass = 'bg-slate-600';
+            } else if (color === 'sky') {
+                sidebarBg.className = "bg-sky-950 text-white transition-colors duration-300";
+                avatar.classList.add('bg-sky-500');
+                roleTitle.classList.add('text-sky-600');
+                langBar1.classList.add('bg-sky-500');
+                langBar2.classList.add('bg-sky-500');
+                primaryClass = 'text-sky-500';
+                textPrimaryClass = 'bg-sky-500';
+            } else { // violet (default)
+                sidebarBg.className = "bg-slate-900 text-white transition-colors duration-300";
+                avatar.classList.add('bg-brand-600');
+                roleTitle.classList.add('text-brand-600');
+                langBar1.classList.add('bg-brand-600');
+                langBar2.classList.add('bg-brand-600');
+                primaryClass = 'text-brand-600';
+                textPrimaryClass = 'bg-brand-600';
+            }
+
+            sectionIcons.forEach(icon => icon.className = `transition-colors duration-300 ${primaryClass}`);
+            contactIcons.forEach(icon => icon.className = `transition-colors duration-300 ${primaryClass}`);
+            timelineDots.forEach(dot => dot.className = `absolute -left-[15px] top-1 w-2 h-2 rounded-full border-2 border-white shadow transition-colors duration-300 ${textPrimaryClass}`);
+        }
+    </script>
+</body>
+</html>
